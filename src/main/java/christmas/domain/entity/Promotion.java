@@ -1,7 +1,7 @@
 package christmas.domain.entity;
 
 import christmas.domain.entity.discount.MyDiscount;
-import java.util.List;
+import java.util.Map;
 
 public class Promotion {
     private final MyDiscount myDiscount;
@@ -23,8 +23,8 @@ public class Promotion {
 
     private int calcGiveawayBenefit() {
         int result = 0;
-        List<Menu> giveaways =  myGiveaway.getAvailableGiveaway();
-        for(Menu menu : giveaways) {
+        Map<Menu, Integer> giveaways =  myGiveaway.getAvailableGiveaway();
+        for(Menu menu : giveaways.keySet()) {
             result += menu.getPrice();
         }
         return result;

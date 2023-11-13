@@ -5,7 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import christmas.domain.entity.Menu;
 import christmas.domain.entity.MyGiveaway;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -14,15 +16,18 @@ public class MyGiveawayTest {
     @Test
     void myGiveawayTest_1() {
         MyGiveaway myGiveaway = new MyGiveaway(120000);
-        List<Menu> giveawayMenu = myGiveaway.getAvailableGiveaway();
-        assertEquals(giveawayMenu, List.of(Menu.CHAMPAGNE));
+        Map<Menu, Integer> giveawayMenu = myGiveaway.getAvailableGiveaway();
+        Map<Menu, Integer> expected = new HashMap<Menu, Integer>();
+        expected.put(Menu.CHAMPAGNE, 1);
+        assertEquals(giveawayMenu, expected);
     }
 
     @DisplayName("증정대상이 아닐때 테스트")
     @Test
     void myGiveawayTest_2() {
         MyGiveaway myGiveaway = new MyGiveaway(119999);
-        List<Menu> giveawayMenu = myGiveaway.getAvailableGiveaway();
-        assertEquals(giveawayMenu, List.of());
+        Map<Menu, Integer> giveawayMenu = myGiveaway.getAvailableGiveaway();
+        Map<Menu, Integer> expected = new HashMap<Menu, Integer>();
+        assertEquals(giveawayMenu, expected);
     }
 }
