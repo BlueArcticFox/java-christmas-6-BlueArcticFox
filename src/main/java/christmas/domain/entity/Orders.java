@@ -8,7 +8,7 @@ import java.util.EnumMap;
 import java.util.Map;
 
 public class Orders extends OrdersValidator {
-    private final Map<Menu, Integer> orders = new EnumMap<>(Menu.class);
+    private final Map<Menu, Integer> orderGroup = new EnumMap<>(Menu.class);
 
     public Orders() {
         init();
@@ -16,13 +16,17 @@ public class Orders extends OrdersValidator {
 
     private void init() {
         for (Menu menu : Menu.values()) {
-            orders.put(menu, 0);
+            orderGroup.put(menu, 0);
         }
     }
 
     public void addOrder(Menu menu, Integer quantity) {
-        validateDuplicates(orders, menu);
-        orders.put(menu, quantity);
-        validateQuantity(orders);
+        validateDuplicates(orderGroup, menu);
+        orderGroup.put(menu, quantity);
+        validateQuantity(orderGroup);
+    }
+
+    public Map<Menu, Integer> getOrders() {
+        return orderGroup;
     }
 }
