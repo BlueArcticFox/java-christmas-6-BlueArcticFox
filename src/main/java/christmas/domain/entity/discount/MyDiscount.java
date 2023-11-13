@@ -27,19 +27,19 @@ public class MyDiscount {
         return new WeekdayDiscount(orders.getNumberOfSection(DESSERT.getValue()));
     }
 
-    public int getD_DayDiscount() {
-        return d_dayDiscount.getDiscount();
+    public D_DayDiscount getD_DayDiscount() {
+        return d_dayDiscount;
     }
 
-    public int getSpecialDiscount() {
-        return specialDiscount.getDiscount();
+    public SpecialDiscount getSpecialDiscount() {
+        return specialDiscount;
     }
 
-    public int getWeekDiscount() {
-        return weekDiscount.getDiscount();
+    public WeekDiscount getWeekDiscount() {
+        return weekDiscount;
     }
 
     public int getAllDiscount() {
-        return getD_DayDiscount() + getSpecialDiscount() + getWeekDiscount();
+        return d_dayDiscount.getDiscount() + specialDiscount.getDiscount() + weekDiscount.getDiscount();
     }
 }
