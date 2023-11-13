@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import christmas.domain.entity.Orders;
 import christmas.domain.entity.Promotion;
 import christmas.domain.entity.VisitDate;
-import christmas.domain.entity.discount.MyDiscount;
 import christmas.service.OrdersService;
+import christmas.service.OrdersServiceImpl;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -19,7 +19,7 @@ public class PromotionTest {
     private Promotion promotion;
     @BeforeEach
     void setup() {
-        ordersService = new OrdersService();
+        ordersService = new OrdersServiceImpl();
         visitDate = new VisitDate(24);
         orders = ordersService.generateOrders(List.of(
                 "타파스-3",

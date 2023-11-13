@@ -1,9 +1,9 @@
 package christmas.service;
 
-import static christmas.message.BenefitMessage.CHRISTMAS_D_DAY_DISCOUNT_NAME;
-import static christmas.message.BenefitMessage.GIVEAWAY_EVENT_NAME;
-import static christmas.message.BenefitMessage.SPECIAL_DISCOUNT_NAME;
-import static christmas.message.BenefitMessage.WEEKDAY_DISCOUNT_NAME;
+import static christmas.message.BenefitMessage.CHRISTMAS_D_DAY_DISCOUNT_MESSAGE;
+import static christmas.message.BenefitMessage.GIVEAWAY_EVENT_MESSAGE;
+import static christmas.message.BenefitMessage.SPECIAL_DISCOUNT_MESSAGE;
+import static christmas.message.BenefitMessage.WEEKDAY_DISCOUNT_MESSAGE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import christmas.domain.dto.OrderPriceDto;
@@ -26,7 +26,7 @@ public class PromotionServiceTest {
     public void setUp() {
         visitDate = new VisitDate(24);
         orders = new Orders();
-        promotionService = new PromotionService();
+        promotionService = new PromotionServiceImpl();
         orders.addOrder(Menu.BBQ_RIBS, 3);
         orders.addOrder(Menu.CHOCOLATE_CAKE, 5);
         promotion = promotionService.generatePromotion(visitDate, orders);
@@ -42,24 +42,27 @@ public class PromotionServiceTest {
         assertEquals(promotion.getTotalBenefit(), expected.getTotalBenefit());
     }
 
-    @DisplayName("10000원 이하(9000원)의 promotion null 반환 테스트")
-    @Test
-    void underMinPriceTest() {
-        orders = new Orders();
-        orders.addOrder(Menu.MUSHROOM_SOUP, 1);
-        orders.addOrder(Menu.ZERO_COLA, 1);
-        Promotion promotion = promotionService.generatePromotion(visitDate, orders);
-        Promotion expected = null;
-        assertEquals(promotion, expected);
-    }
-
     @DisplayName("OrderPriceDto변환 테스트")
     @Test
     void orderPriceDtoTest() {
         OrderPriceDto orderPriceDto = promotionService.generateOrderPriceDto(orders, promotion);
         assertEquals(orderPriceDto.getTotalPriceBeforeDiscount(), 237000);
-        assertEquals(orderPriceDto.getTotalBenefit(), 39415);
+        assertEquals(orderPriceDto.getTotalBenefit(), -39415);
         assertEquals(orderPriceDto.getExpectedPriceAfterDiscount(), 222585);
+    }
+
+    @DisplayName("PromotionDto변환 테스트")
+    @Test
+    void promotionDtoTest() {
+        PromotionDto promotionDto = promotionService.generatePromotionDto(promotion);
+        assertEquals(promotionDto.getGiveaway(), Map.of("샴페인", 1));
+        assertEquals(promotionDto.getBenefit(), Map.of(
+                CHRISTMAS_D_DAY_DISCOUNT_MESSAGE.getMessage(), -3300,
+                WEEKDAY_DISCOUNT_MESSAGE.getMessage(), -10115,
+                SPECIAL_DISCOUNT_MESSAGE.getMessage(), -1000,
+                GIVEAWAY_EVENT_MESSAGE.getMessage(), -25000
+        ));
+        assertEquals(promotionDto.getBadge(), "산타");
     }
 
     @DisplayName("OrderPriceDto변환 null 테스트")
@@ -71,18 +74,15 @@ public class PromotionServiceTest {
         assertEquals(orderPriceDto.getExpectedPriceAfterDiscount(), 237000);
     }
 
-    @DisplayName("PromotionDto변환 테스트")
+    @DisplayName("10000원 이하(9000원)의 promotion null 반환 테스트")
     @Test
-    void promotionDtoTest() {
-        PromotionDto promotionDto = promotionService.generatePromotionDto(promotion);
-        assertEquals(promotionDto.getGiveaway(), Map.of("샴페인", 1));
-        assertEquals(promotionDto.getBenefit(), Map.of(
-                CHRISTMAS_D_DAY_DISCOUNT_NAME.getMessage(), 3300,
-                WEEKDAY_DISCOUNT_NAME.getMessage(), 10115,
-                SPECIAL_DISCOUNT_NAME.getMessage(), 1000,
-                GIVEAWAY_EVENT_NAME.getMessage(), 25000
-        ));
-        assertEquals(promotionDto.getBadge(), "산타");
+    void underMinPriceTest() {
+        orders = new Orders();
+        orders.addOrder(Menu.MUSHROOM_SOUP, 1);
+        orders.addOrder(Menu.ZERO_COLA, 1);
+        Promotion promotion = promotionService.generatePromotion(visitDate, orders);
+        Promotion expected = null;
+        assertEquals(promotion, expected);
     }
 
     @DisplayName("PromotionDto변환 null 테스트")

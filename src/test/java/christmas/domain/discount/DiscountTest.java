@@ -6,6 +6,7 @@ import christmas.domain.entity.Orders;
 import christmas.domain.entity.VisitDate;
 import christmas.domain.entity.discount.MyDiscount;
 import christmas.service.OrdersService;
+import christmas.service.OrdersServiceImpl;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -18,7 +19,7 @@ public class DiscountTest {
     private MyDiscount discount;
     @BeforeEach
     void setup() {
-        ordersService = new OrdersService();
+        ordersService = new OrdersServiceImpl();
         visitDate = new VisitDate(24);
         orders = ordersService.generateOrders(List.of(
                 "타파스-3",
@@ -31,19 +32,19 @@ public class DiscountTest {
     @DisplayName("D_Day 할인 테스트")
     @Test
     void discountTest_1() {
-        assertEquals(discount.getD_DayDiscount(), 3300);
+        assertEquals(discount.getD_DayDiscount().getDiscount(), 3300);
     }
 
     @DisplayName("스페셜 할인 테스트")
     @Test
     void discountTest_2() {
-        assertEquals(discount.getSpecialDiscount(), 1000);
+        assertEquals(discount.getSpecialDiscount().getDiscount(), 1000);
     }
 
     @DisplayName("Weekday 할인 테스트")
     @Test
     void discountTest_3() {
-        assertEquals(discount.getWeekDiscount(), 8092);
+        assertEquals(discount.getWeekDiscount().getDiscount(), 8092);
     }
 
     @DisplayName("Weekend 할인 테스트")
@@ -51,7 +52,7 @@ public class DiscountTest {
     void discountTest_4() {
         visitDate = new VisitDate(23);
         discount = new MyDiscount(visitDate, orders);
-        assertEquals(discount.getWeekDiscount(), 4046);
+        assertEquals(discount.getWeekDiscount().getDiscount(), 4046);
     }
 
     @DisplayName("전체 할인 금액 테스트")

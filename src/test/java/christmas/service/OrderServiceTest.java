@@ -23,7 +23,7 @@ public class OrderServiceTest {
     @BeforeEach
     public void setUp() {
         orders = new Orders();
-        ordersService = new OrdersService();
+        ordersService = new OrdersServiceImpl();
         orders.addOrder(Menu.TAPAS, 5);
         orders.addOrder(Menu.BBQ_RIBS, 3);
         orders.addOrder(Menu.SEAFOOD_PASTA, 1);
