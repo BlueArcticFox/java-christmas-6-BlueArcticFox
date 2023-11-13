@@ -25,6 +25,15 @@ public class OrdersService {
         return orders;
     }
 
+    public int getNumberOfOrders(Orders orders) {
+        int count = 0;
+        Map<Menu, Integer> orderGroup = orders.getOrders();
+        for(int orderNumber: orderGroup.values()) {
+            count += orderNumber;
+        }
+        return count;
+    }
+
     public int getNumberOfSection(Orders orders, String section) {
         int count = 0;
         Map<Menu, Integer> orderGroup = orders.getOrders();
