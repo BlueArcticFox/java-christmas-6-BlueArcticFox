@@ -3,12 +3,14 @@ package christmas.domain.entity;
 import static christmas.domain.entity.Menu.CHAMPAGNE;
 
 public enum Giveaway {
-    GIVEAWAY_0(CHAMPAGNE, 120000);
+    GIVEAWAY_0(CHAMPAGNE, 1, 120000);
 
     private final Menu menu;
+    private final int quantity;
     private final int condition;
-    private Giveaway(Menu menu, int condition) {
+    private Giveaway(Menu menu, int quantity, int condition) {
         this.menu = menu;
+        this.quantity = quantity;
         this.condition = condition;
     }
 
@@ -18,5 +20,9 @@ public enum Giveaway {
 
     public Menu getMenu() {
         return menu;
+    }
+
+    public int getQuantity() {
+        return quantity;
     }
 }
