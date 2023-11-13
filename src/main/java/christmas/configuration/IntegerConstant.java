@@ -4,7 +4,8 @@ public enum IntegerConstant {
     ZERO(0),
     MAX_QUANTITY(20),
     MIN_DAY(1),
-    MAX_DAY(31);
+    MAX_DAY(31),
+    MIN_PRICE(10000);
 
     private final int value;
     IntegerConstant(int value) {
