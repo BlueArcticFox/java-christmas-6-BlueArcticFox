@@ -26,10 +26,6 @@ public class Orders extends OrdersValidator {
         validateQuantity(orderGroup);
     }
 
-    public Map<Menu, Integer> getOrders() {
-        return orderGroup;
-    }
-
     public int getTotalPrice() {
         int prize = 0;
         for(Menu menu: orderGroup.keySet()) {
@@ -54,5 +50,9 @@ public class Orders extends OrdersValidator {
             }
         }
         return count;
+    }
+
+    public Map<Menu, Integer> getOrders() {
+        return orderGroup;
     }
 }
