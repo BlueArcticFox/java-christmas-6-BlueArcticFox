@@ -81,6 +81,15 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @DisplayName("초과 개수 테스트")
+    @Test
+    void 초과_개수_테스트() {
+        assertSimpleTest(() -> {
+            runException("3", "제로콜라-5, 타파스-15, 바비큐립-1");
+            assertThat(output()).contains("[ERROR] 한 번에 최대 20개까지만 주문할 수 있습니다. 다시 입력해 주세요.");
+        });
+    }
+
     @DisplayName("평일 할인 테스트")
     @Test
     void 평일_할인_테스트() {
