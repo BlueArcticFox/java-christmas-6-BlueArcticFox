@@ -38,36 +38,36 @@ public class OrderServiceTest {
     @DisplayName("애피타이저 개수 반환 테스트")
     @Test
     void appetizerTest() {
-        assertEquals(ordersService.getNumberOfSection(orders, APPETIZER.getValue()), 5);
+        assertEquals(orders.getNumberOfSection(APPETIZER.getValue()), 5);
     }
 
     @DisplayName("메인 개수 반환 테스트")
     @Test
     void mainDishTest() {
-        assertEquals(ordersService.getNumberOfSection(orders, MAIN_DISH.getValue()), 4);
+        assertEquals(orders.getNumberOfSection(MAIN_DISH.getValue()), 4);
     }
 
     @DisplayName("디저트 개수 반환 테스트")
     @Test
     void dessertTest() {
-        assertEquals(ordersService.getNumberOfSection(orders, DESSERT.getValue()), 2);
+        assertEquals(orders.getNumberOfSection(DESSERT.getValue()), 2);
     }
 
     @DisplayName("음료 개수 반환 테스트")
     @Test
     void drinkTest() {
-        assertEquals(ordersService.getNumberOfSection(orders, DRINK.getValue()), 1);
+        assertEquals(orders.getNumberOfSection(DRINK.getValue()), 1);
     }
 
     @DisplayName("총 음식 개수 반환 테스트")
     @Test
     void foodTest() {
-        assertEquals(ordersService.getNumberOfOrders(orders), 12);
+        assertEquals(orders.getNumberOfOrders(), 12);
     }
 
     @DisplayName("전체 가격 계산 테스트")
     @Test
     void totalPriceTest() {
-        assertEquals(ordersService.getTotalPrice(orders), 294500);
+        assertEquals(orders.getTotalPrice(), 294500);
     }
 }

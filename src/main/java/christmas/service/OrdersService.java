@@ -29,37 +29,8 @@ public class OrdersService {
     }
 
     private void validateAllDrinks(Orders orders) {
-        if(getNumberOfOrders(orders) == getNumberOfSection(orders, DRINK.getValue())) {
+        if(orders.getNumberOfOrders() == orders.getNumberOfSection(DRINK.getValue())) {
             ExceptionUtil.throwIllegalArgumentException(INVALID_MENU_MESSAGE.getMessage());
         }
-    }
-
-    public int getTotalPrice(Orders orders) {
-        int prize = 0;
-        Map<Menu, Integer> orderGroup = orders.getOrders();
-        for(Menu menu: orderGroup.keySet()) {
-            prize += menu.getTotalPrice(orderGroup.get(menu));
-        }
-        return prize;
-    }
-
-    public int getNumberOfOrders(Orders orders) {
-        int count = 0;
-        Map<Menu, Integer> orderGroup = orders.getOrders();
-        for(int orderNumber: orderGroup.values()) {
-            count += orderNumber;
-        }
-        return count;
-    }
-
-    public int getNumberOfSection(Orders orders, String section) {
-        int count = 0;
-        Map<Menu, Integer> orderGroup = orders.getOrders();
-        for(Menu menu: orderGroup.keySet()) {
-            if(menu.getSection().equals(section)) {
-                count += orderGroup.get(menu);
-            }
-        }
-        return count;
     }
 }

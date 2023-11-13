@@ -29,4 +29,30 @@ public class Orders extends OrdersValidator {
     public Map<Menu, Integer> getOrders() {
         return orderGroup;
     }
+
+    public int getTotalPrice() {
+        int prize = 0;
+        for(Menu menu: orderGroup.keySet()) {
+            prize += menu.getTotalPrice(orderGroup.get(menu));
+        }
+        return prize;
+    }
+
+    public int getNumberOfOrders() {
+        int count = 0;
+        for(int orderNumber: orderGroup.values()) {
+            count += orderNumber;
+        }
+        return count;
+    }
+
+    public int getNumberOfSection(String section) {
+        int count = 0;
+        for(Menu menu: orderGroup.keySet()) {
+            if(menu.getSection().equals(section)) {
+                count += orderGroup.get(menu);
+            }
+        }
+        return count;
+    }
 }
