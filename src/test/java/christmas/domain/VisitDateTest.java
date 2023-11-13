@@ -9,7 +9,7 @@ import christmas.domain.entity.VisitDate;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class DateTest {
+public class VisitDateTest {
     @DisplayName("정상 날짜 입력 테스트")
     @Test
     void goodAddOrderTest() {
