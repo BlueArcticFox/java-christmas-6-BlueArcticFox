@@ -1,6 +1,7 @@
 package christmas.configuration;
 
 public enum IntegerConstant {
+    ZERO(0),
     MAX_QUANTITY(20),
     MIN_DAY(1),
     MAX_DAY(31);
