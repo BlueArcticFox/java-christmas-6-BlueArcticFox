@@ -7,9 +7,12 @@ import static christmas.configuration.StringConstant.MAIN_DISH;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import christmas.domain.dto.OrdersDto;
 import christmas.domain.entity.Menu;
 import christmas.domain.entity.Orders;
+import christmas.domain.entity.VisitDate;
 import java.util.List;
+import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -69,5 +72,22 @@ public class OrderServiceTest {
     @Test
     void totalPriceTest() {
         assertEquals(orders.getTotalPrice(), 294500);
+    }
+
+    @DisplayName("OrderDto 변환 테스트")
+    @Test
+    void OrderDtoTest() {
+        OrdersDto ordersDto = ordersService.generateOrdersDto(new VisitDate(20), orders.getOrders());
+        OrdersDto expected = new OrdersDto(20,
+                    Map.of(
+                            Menu.TAPAS.getName(), 5,
+                            Menu.BBQ_RIBS.getName(), 3,
+                            Menu.SEAFOOD_PASTA.getName(), 1,
+                            Menu.ICE_CREAM.getName(), 2,
+                            Menu.RED_WINE.getName(), 1
+                    )
+            );
+        assertEquals(ordersDto.getOrders(), expected.getOrders());
+        assertEquals(ordersDto.getVisitDate(), expected.getVisitDate());
     }
 }
