@@ -1,5 +1,6 @@
 package christmas.util;
 
+import static christmas.configuration.PatternConstant.THOUSAND_SEPARATOR;
 import static christmas.configuration.StringConstant.DELIMITER_COMMA;
 import static christmas.configuration.StringConstant.DELIMITER_DASH;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -22,5 +23,12 @@ public class StringUtilTest {
     void SplitByDashTest () {
         assertEquals(StringUtil.splitBy("아이스크림-3", DELIMITER_DASH.getValue())
                 , List.of("아이스크림","3"));
+    }
+
+    @DisplayName("DecimalFormat 테스트")
+    @Test
+    void DecimalFormatTest () {
+        assertEquals(StringUtil.formatNumber(142000, THOUSAND_SEPARATOR.getValue())
+                , "142,000");
     }
 }
