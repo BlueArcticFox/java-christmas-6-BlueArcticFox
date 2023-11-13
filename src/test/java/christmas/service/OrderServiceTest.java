@@ -49,4 +49,10 @@ public class OrderServiceTest {
     void drinkTest() {
         assertEquals(ordersService.getNumberOfSection(orders, DRINK.getValue()), 1);
     }
+
+    @DisplayName("총 음식 개수 반환 테스트")
+    @Test
+    void foodTest() {
+        assertEquals(ordersService.getNumberOfOrders(orders), 12);
+    }
 }
