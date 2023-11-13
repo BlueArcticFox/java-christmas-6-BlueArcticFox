@@ -1,10 +1,8 @@
 package christmas.domain.entity;
 
-import static christmas.message.BenefitMessage.GIVEAWAY_EVENT_NAME;
+import static christmas.message.BenefitMessage.GIVEAWAY_EVENT_MESSAGE;
 
-import java.util.ArrayList;
 import java.util.EnumMap;
-import java.util.List;
 import java.util.Map;
 
 public class MyGiveaway {
@@ -33,6 +31,6 @@ public class MyGiveaway {
     }
 
     public String getMessage() {
-        return GIVEAWAY_EVENT_NAME.getMessage();
+        return GIVEAWAY_EVENT_MESSAGE.getMessage();
     }
 }

@@ -3,7 +3,7 @@ package christmas.domain.entity.discount;
 import static christmas.configuration.DateConstant.CHRISTMAS;
 import static christmas.configuration.IntegerConstant.MIN_DAY;
 import static christmas.configuration.IntegerConstant.ZERO;
-import static christmas.message.BenefitMessage.CHRISTMAS_D_DAY_DISCOUNT_NAME;
+import static christmas.message.BenefitMessage.CHRISTMAS_D_DAY_DISCOUNT_MESSAGE;
 
 public class D_DayDiscount {
     private static final int D_DAY_DISCOUNT_INIT_NUMBER = 1000;
@@ -26,7 +26,7 @@ public class D_DayDiscount {
     }
 
     public String getMessage() {
-        return CHRISTMAS_D_DAY_DISCOUNT_NAME.getMessage();
+        return CHRISTMAS_D_DAY_DISCOUNT_MESSAGE.getMessage();
     }
 
     public int getDiscount() {

@@ -1,7 +1,6 @@
 package christmas.domain.entity.discount;
 
-import static christmas.message.BenefitMessage.WEEKDAY_DISCOUNT_NAME;
-import static christmas.message.BenefitMessage.WEEKEND_DISCOUNT_NAME;
+import static christmas.message.BenefitMessage.WEEKEND_DISCOUNT_MESSAGE;
 
 public class WeekendDiscount implements WeekDiscount {
     private static final int DISCOUNT_PER_QUANTITY = 2023;
@@ -13,7 +12,7 @@ public class WeekendDiscount implements WeekDiscount {
 
     @Override
     public String getMessage() {
-        return WEEKEND_DISCOUNT_NAME.getMessage();
+        return WEEKEND_DISCOUNT_MESSAGE.getMessage();
     }
 
     @Override
