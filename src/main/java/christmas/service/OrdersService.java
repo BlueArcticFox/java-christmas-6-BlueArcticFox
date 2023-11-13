@@ -14,7 +14,7 @@ import christmas.util.ExceptionUtil;
 import christmas.util.IntegerUtil;
 import christmas.util.MenuUtil;
 import christmas.util.StringUtil;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -40,7 +40,7 @@ public class OrdersService {
     }
 
     public OrdersDto generateOrdersDto(VisitDate visitDate, Map<Menu, Integer> orders) {
-        Map<String, Integer> ordersForDto = new HashMap<String, Integer>();
+        Map<String, Integer> ordersForDto = new LinkedHashMap<String, Integer>();
         for(Menu menu : orders.keySet()) {
             int quantity = orders.get(menu);
             if(quantity > ZERO.getValue()) {

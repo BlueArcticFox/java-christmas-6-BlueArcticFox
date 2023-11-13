@@ -13,7 +13,7 @@ import christmas.domain.entity.Promotion;
 import christmas.domain.entity.VisitDate;
 import christmas.domain.entity.discount.MyDiscount;
 import christmas.util.DtoUtil;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class PromotionService {
@@ -49,7 +49,7 @@ public class PromotionService {
     }
 
     private Map<String, Integer> decideGiveawayForDto(Map<Menu, Integer> giveaway) {
-        Map<String, Integer> giveawayForDto = new HashMap<String, Integer>();
+        Map<String, Integer> giveawayForDto = new LinkedHashMap<String, Integer>();
         for(Menu menu : giveaway.keySet()) {
             int quantity = giveaway.get(menu);
             if(quantity > ZERO.getValue()) {
@@ -60,7 +60,7 @@ public class PromotionService {
     }
 
     private Map<String, Integer> decideDiscountForDto(Promotion promotion) {
-        Map<String, Integer> discountForDto = new HashMap<String, Integer>();
+        Map<String, Integer> discountForDto = new LinkedHashMap<String, Integer>();
         MyDiscount myDiscount = promotion.getMyDiscount();
 
         int benefit = myDiscount.getD_DayDiscount().getDiscount();
