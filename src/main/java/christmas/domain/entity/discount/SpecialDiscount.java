@@ -3,6 +3,7 @@ package christmas.domain.entity.discount;
 import static christmas.configuration.DateConstant.CHRISTMAS;
 import static christmas.configuration.DateConstant.SUNDAY;
 import static christmas.configuration.IntegerConstant.ZERO;
+import static christmas.message.BenefitMessage.SPECIAL_DISCOUNT_NAME;
 
 public class SpecialDiscount {
     private static final int SPECIAL_DISCOUNT = 1000;
@@ -21,6 +22,10 @@ public class SpecialDiscount {
 
     private boolean isSpecialDiscountDay(int date, int week) {
         return (date == CHRISTMAS.getValue() || week == SUNDAY.getValue());
+    }
+
+    public String getMessage() {
+        return SPECIAL_DISCOUNT_NAME.getMessage();
     }
 
     public int getDiscount() {

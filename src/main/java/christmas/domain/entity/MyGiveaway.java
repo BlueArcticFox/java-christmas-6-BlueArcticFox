@@ -1,5 +1,7 @@
 package christmas.domain.entity;
 
+import static christmas.message.BenefitMessage.GIVEAWAY_EVENT_NAME;
+
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
@@ -20,13 +22,17 @@ public class MyGiveaway {
         }
     }
 
-    public List<Menu> getAvailableGiveaway() {
-        List<Menu> myGiveaways = new ArrayList<>();
+    public Map<Menu, Integer> getAvailableGiveaway() {
+        Map<Menu, Integer> myGiveaways = new EnumMap<>(Menu.class);
         for(Giveaway giveaway : Giveaway.values()) {
             if(giveawayAvailable.get(giveaway)) {
-                myGiveaways.add(giveaway.getMenu());
+                myGiveaways.put(giveaway.getMenu(), giveaway.getQuantity());
             }
         }
         return myGiveaways;
+    }
+
+    public String getMessage() {
+        return GIVEAWAY_EVENT_NAME.getMessage();
     }
 }
