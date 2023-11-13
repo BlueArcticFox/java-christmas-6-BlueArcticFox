@@ -23,6 +23,10 @@ public enum Menu {
         this.price = price;
     }
 
+    public int getTotalPrice(int quantity) {
+        return price * quantity;
+    }
+
     public String getSection() {
         return section;
     }
@@ -34,4 +38,5 @@ public enum Menu {
     public int getPrice() {
         return price;
     }
+
 }
