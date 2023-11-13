@@ -9,6 +9,7 @@ import christmas.util.IntegerUtil;
 import christmas.util.MenuUtil;
 import christmas.util.StringUtil;
 import java.util.List;
+import java.util.Map;
 
 public class OrdersService {
     public Orders generateOrders(List<String> values) {
@@ -22,5 +23,16 @@ public class OrdersService {
             orders.addOrder(menu, quantity);
         }
         return orders;
+    }
+
+    public int getNumberOfSection(Orders orders, String section) {
+        int count = 0;
+        Map<Menu, Integer> orderGroup = orders.getOrders();
+        for(Menu menu: orderGroup.keySet()) {
+            if(menu.getSection().equals(section)) {
+                count += orderGroup.get(menu);
+            }
+        }
+        return count;
     }
 }
