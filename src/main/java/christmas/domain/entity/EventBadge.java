@@ -1,7 +1,7 @@
 package christmas.domain.entity;
 
 public enum EventBadge {
-    NULL_BADGE("", 0),
+    NULL_BADGE("없음", 0),
     STAR_BADGE("별", 5000),
     TREE_BADGE("트리", 10000),
     SANTA_BADGE("산타", 20000);
