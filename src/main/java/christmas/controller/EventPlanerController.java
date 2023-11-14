@@ -46,7 +46,7 @@ public class EventPlanerController {
         PromotionDto promotionDto = promotionService.generatePromotionDto(promotion);
 
         printResult(ordersDto, orderPriceDto, promotionDto);
-        Schedule schedule = Schedule.create(orders, promotion);
+        Schedule schedule = Schedule.create(visitDate, orders, promotion);
         Long scheduleId = scheduleService.saveSchedule(schedule);
 
         rePlan(NO.getValue());
