@@ -21,7 +21,7 @@ import java.util.Map;
 public class OrdersServiceImpl implements OrdersService {
     @Override
     public Orders generateOrders(List<String> values) {
-        Orders orders = new Orders();
+        Orders orders = Orders.create();
         for(String value : values) {
             List<String> splitValue = StringUtil.splitBy(value, DELIMITER_DASH.getValue());
 

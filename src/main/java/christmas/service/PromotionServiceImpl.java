@@ -19,7 +19,7 @@ import java.util.Map;
 public class PromotionServiceImpl implements PromotionService {
     @Override
     public Promotion generatePromotion(VisitDate visitDate, Orders orders) {
-        return Promotion.createPromotion(visitDate, orders);
+        return Promotion.create(visitDate, orders);
     }
 
     @Override

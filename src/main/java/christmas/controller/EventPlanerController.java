@@ -7,11 +7,7 @@ import christmas.domain.entity.Orders;
 import christmas.domain.entity.Promotion;
 import christmas.domain.entity.VisitDate;
 import christmas.service.OrdersService;
-import christmas.service.OrdersServiceImpl;
 import christmas.service.PromotionService;
-import christmas.service.PromotionServiceImpl;
-import christmas.view.ConsoleInputView;
-import christmas.view.ConsoleOutputView;
 import christmas.view.InputView;
 import christmas.view.OutputView;
 import java.util.List;
@@ -48,7 +44,7 @@ public class EventPlanerController {
     private VisitDate decideVisitDate() {
         try {
             int input = inputView.inputDate();
-            return new VisitDate(input);
+            return VisitDate.create(input);
         } catch (IllegalArgumentException e) {
             return decideVisitDate();
         }

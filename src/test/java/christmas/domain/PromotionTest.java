@@ -20,13 +20,13 @@ public class PromotionTest {
     @BeforeEach
     void setup() {
         ordersService = new OrdersServiceImpl();
-        visitDate = new VisitDate(24);
+        visitDate = VisitDate.create(24);
         orders = ordersService.generateOrders(List.of(
                 "타파스-3",
                 "티본스테이크-2",
                 "아이스크림-4"
         ));
-        promotion = Promotion.createPromotion(visitDate, orders);
+        promotion = Promotion.create(visitDate, orders);
     }
 
     @DisplayName("전체 혜택 금액 테스트")

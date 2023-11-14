@@ -12,13 +12,13 @@ public class Promotion {
     private final int totalBenefit;
 
     private Promotion(VisitDate visitDate, Orders orders) {
-        myDiscount = new MyDiscount(visitDate, orders);
-        myGiveaway = new MyGiveaway(orders.getTotalPrice());
+        myDiscount = MyDiscount.create(visitDate, orders);
+        myGiveaway = MyGiveaway.create(orders.getTotalPrice());
         totalBenefit = calcTotalBenefit();
-        myEventBadge = new MyEventBadge(totalBenefit);
+        myEventBadge = MyEventBadge.create(totalBenefit);
     }
 
-    public static Promotion createPromotion(VisitDate visitDate, Orders orders) {
+    public static Promotion create(VisitDate visitDate, Orders orders) {
         if(orders.getTotalPrice() < MIN_PRICE.getValue()) {
             return null;
         }

@@ -11,14 +11,14 @@ public class D_DayDiscountTest {
     @DisplayName("적용 대상 입력에 대한 Discount 계산")
     @Test
     void testDiscount_1() {
-        discount = new D_DayDiscount(25);
+        discount = D_DayDiscount.create(25);
         assertEquals(discount.getDiscount(), 3400);
     }
 
     @DisplayName("비적용 대상 입력에 대한 Discount 계산")
     @Test
     void testDiscount_2() {
-        discount = new D_DayDiscount(26);
+        discount = D_DayDiscount.create(26);
         assertEquals(discount.getDiscount(), 0);
     }
 }

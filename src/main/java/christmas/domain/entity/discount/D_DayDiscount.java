@@ -10,8 +10,12 @@ public class D_DayDiscount {
     private static final int D_DAY_DISCOUNT_PLUS_NUMBER = 100;
     private final int discount;
 
-    public D_DayDiscount(int date) {
+    private D_DayDiscount(int date) {
         discount = calcD_DayDiscount(date);
+    }
+
+    public static D_DayDiscount create(int date) {
+        return new D_DayDiscount(date);
     }
 
     private int calcD_DayDiscount(int date) {

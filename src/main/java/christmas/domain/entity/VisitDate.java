@@ -9,10 +9,14 @@ public class VisitDate extends VisitDateValidator {
     private final int date;
     private final int week;
 
-    public VisitDate(int date) {
+    private VisitDate(int date) {
         validateDate(date);
         this.date = date;
         week = decideWeek();
+    }
+
+    public static VisitDate create(int date) {
+        return new VisitDate(date);
     }
 
     public int decideWeek() {

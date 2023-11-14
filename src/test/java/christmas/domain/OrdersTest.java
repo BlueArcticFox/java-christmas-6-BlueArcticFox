@@ -13,7 +13,7 @@ public class OrdersTest {
     private Orders orders;
     @BeforeEach
     public void setUp() {
-        orders = new Orders();
+        orders = Orders.create();
     }
 
     @DisplayName("정상 메뉴 추가에 따른 테스트")

@@ -8,8 +8,12 @@ import java.util.Map;
 public class MyGiveaway {
     private final Map<Giveaway, Boolean> giveawayAvailable = new EnumMap<>(Giveaway.class);
 
-    public MyGiveaway(int value) {
+    private MyGiveaway(int value) {
         decideGiveawayAvailable(value);
+    }
+
+    public static MyGiveaway create(int value) {
+        return new MyGiveaway(value);
     }
 
     private void decideGiveawayAvailable(int value) {

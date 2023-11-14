@@ -20,13 +20,13 @@ public class DiscountTest {
     @BeforeEach
     void setup() {
         ordersService = new OrdersServiceImpl();
-        visitDate = new VisitDate(24);
+        visitDate = VisitDate.create(24);
         orders = ordersService.generateOrders(List.of(
                 "타파스-3",
                 "티본스테이크-2",
                 "아이스크림-4"
         ));
-        discount = new MyDiscount(visitDate, orders);
+        discount = MyDiscount.create(visitDate, orders);
     }
 
     @DisplayName("D_Day 할인 테스트")
@@ -50,8 +50,8 @@ public class DiscountTest {
     @DisplayName("Weekend 할인 테스트")
     @Test
     void discountTest_4() {
-        visitDate = new VisitDate(23);
-        discount = new MyDiscount(visitDate, orders);
+        visitDate = VisitDate.create(23);
+        discount = MyDiscount.create(visitDate, orders);
         assertEquals(discount.getWeekDiscount().getDiscount(), 4046);
     }
 

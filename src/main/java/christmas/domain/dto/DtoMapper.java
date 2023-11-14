@@ -10,14 +10,14 @@ public class DtoMapper {
     }
 
     public static OrderPriceDto toOrderPriceDto(int totalPriceBeforeDiscount, int totalBenefit, int expectedPriceAfterDiscount) {
-        return new OrderPriceDto(totalPriceBeforeDiscount, totalBenefit, expectedPriceAfterDiscount);
+        return OrderPriceDto.create(totalPriceBeforeDiscount, totalBenefit, expectedPriceAfterDiscount);
     }
 
     public static OrdersDto toOrderDto(int visitDate, Map<String, Integer> orders) {
-        return new OrdersDto(visitDate, orders);
+        return OrdersDto.create(visitDate, orders);
     }
 
     public static PromotionDto toPromotionDto(Map<String, Integer> giveaway, Map<String, Integer> promotion, String badge) {
-        return new PromotionDto(giveaway, promotion, badge);
+        return PromotionDto.create(giveaway, promotion, badge);
     }
 }

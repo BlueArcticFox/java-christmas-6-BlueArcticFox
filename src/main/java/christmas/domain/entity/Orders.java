@@ -10,8 +10,12 @@ import java.util.Map;
 public class Orders extends OrdersValidator {
     private final Map<Menu, Integer> orderGroup = new EnumMap<>(Menu.class);
 
-    public Orders() {
+    private Orders() {
         init();
+    }
+
+    public static Orders create() {
+        return new Orders();
     }
 
     private void init() {

@@ -3,8 +3,12 @@ package christmas.domain.entity;
 public class MyEventBadge {
     private final EventBadge badge;
 
-    public MyEventBadge(int totalDiscount) {
+    private MyEventBadge(int totalDiscount) {
         badge = decideEventBadge(totalDiscount);
+    }
+
+    public static MyEventBadge create(int totalDiscount) {
+        return new MyEventBadge(totalDiscount);
     }
 
     private EventBadge decideEventBadge(int totalDiscount) {

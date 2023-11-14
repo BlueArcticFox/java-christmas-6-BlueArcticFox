@@ -9,8 +9,12 @@ public class SpecialDiscount {
     private static final int SPECIAL_DISCOUNT = 1000;
     private final int discount;
 
-    public SpecialDiscount(int date, int week) {
+    private SpecialDiscount(int date, int week) {
         discount = calcSpecialDiscount(date, week);
+    }
+
+    public static SpecialDiscount create(int date, int week) {
+        return new SpecialDiscount(date, week);
     }
 
     private int calcSpecialDiscount(int date, int week) {

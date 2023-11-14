@@ -6,8 +6,12 @@ public class WeekdayDiscount implements WeekDiscount {
     private static final int DISCOUNT_PER_QUANTITY = 2023;
     private final int discount;
 
-    public WeekdayDiscount(int dessertQuantity) {
+    private WeekdayDiscount(int dessertQuantity) {
         discount = dessertQuantity * DISCOUNT_PER_QUANTITY;
+    }
+
+    public static WeekdayDiscount create(int dessertQuantity) {
+        return new WeekdayDiscount(dessertQuantity);
     }
 
     @Override

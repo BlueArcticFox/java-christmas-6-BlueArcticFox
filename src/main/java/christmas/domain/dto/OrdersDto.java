@@ -6,9 +6,13 @@ public class OrdersDto {
     private final int visitDate;
     private final Map<String, Integer> orders;
 
-    public OrdersDto(int visitDate, Map<String, Integer> orders) {
+    private OrdersDto(int visitDate, Map<String, Integer> orders) {
         this.visitDate = visitDate;
         this.orders = orders;
+    }
+
+    protected static OrdersDto create(int visitDate, Map<String, Integer> orders) {
+        return new OrdersDto(visitDate, orders);
     }
 
     public int getVisitDate() {

@@ -13,24 +13,24 @@ public class SpecialDiscountTest {
     @DisplayName("일요일에서의 discount 반환")
     @Test
     void testSpecialDiscount_1(){
-        date = new VisitDate(24);
-        discount = new SpecialDiscount(date.getDate(), date.getWeek());
+        date = VisitDate.create(24);
+        discount = SpecialDiscount.create(date.getDate(), date.getWeek());
         assertEquals(discount.getDiscount(), 1000);
     }
 
     @DisplayName("크리스마스에서의 discount 반환")
     @Test
     void testSpecialDiscount_2(){
-        date = new VisitDate(25);
-        discount = new SpecialDiscount(date.getDate(), date.getWeek());
+        date = VisitDate.create(25);
+        discount = SpecialDiscount.create(date.getDate(), date.getWeek());
         assertEquals(discount.getDiscount(), 1000);
     }
 
     @DisplayName("이벤트 날짜가 아닌 날의 discount 반환")
     @Test
     void testSpecialDiscount_3(){
-        date = new VisitDate(23);
-        discount = new SpecialDiscount(date.getDate(), date.getWeek());
+        date = VisitDate.create(23);
+        discount = SpecialDiscount.create(date.getDate(), date.getWeek());
         assertEquals(discount.getDiscount(), 0);
     }
 }

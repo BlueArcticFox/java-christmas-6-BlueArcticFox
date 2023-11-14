@@ -7,6 +7,8 @@ import static christmas.configuration.StringConstant.MAIN_DISH;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import christmas.configuration.AppConfig;
+import christmas.domain.dto.DtoMapper;
 import christmas.domain.dto.OrdersDto;
 import christmas.domain.entity.Menu;
 import christmas.domain.entity.Orders;
@@ -22,7 +24,7 @@ public class OrderServiceTest {
     private OrdersService ordersService;
     @BeforeEach
     public void setUp() {
-        orders = new Orders();
+        orders = Orders.create();
         ordersService = new OrdersServiceImpl();
         orders.addOrder(Menu.TAPAS, 5);
         orders.addOrder(Menu.BBQ_RIBS, 3);
@@ -77,16 +79,16 @@ public class OrderServiceTest {
     @DisplayName("OrderDto 변환 테스트")
     @Test
     void OrderDtoTest() {
-        OrdersDto ordersDto = ordersService.generateOrdersDto(new VisitDate(20), orders.getOrders());
-        OrdersDto expected = new OrdersDto(20,
-                    Map.of(
-                            Menu.TAPAS.getName(), 5,
-                            Menu.BBQ_RIBS.getName(), 3,
-                            Menu.SEAFOOD_PASTA.getName(), 1,
-                            Menu.ICE_CREAM.getName(), 2,
-                            Menu.RED_WINE.getName(), 1
-                    )
-            );
+        OrdersDto ordersDto = ordersService.generateOrdersDto(VisitDate.create(20), orders.getOrders());
+        OrdersDto expected = DtoMapper.toOrderDto(20,
+                Map.of(
+                        Menu.TAPAS.getName(), 5,
+                        Menu.BBQ_RIBS.getName(), 3,
+                        Menu.SEAFOOD_PASTA.getName(), 1,
+                        Menu.ICE_CREAM.getName(), 2,
+                        Menu.RED_WINE.getName(), 1
+                )
+        );
         assertEquals(ordersDto.getOrders(), expected.getOrders());
         assertEquals(ordersDto.getVisitDate(), expected.getVisitDate());
     }

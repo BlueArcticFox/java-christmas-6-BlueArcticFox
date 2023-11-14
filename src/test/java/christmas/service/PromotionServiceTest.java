@@ -24,8 +24,8 @@ public class PromotionServiceTest {
     private Promotion promotion;
     @BeforeEach
     public void setUp() {
-        visitDate = new VisitDate(24);
-        orders = new Orders();
+        visitDate = VisitDate.create(24);
+        orders = Orders.create();
         promotionService = new PromotionServiceImpl();
         orders.addOrder(Menu.BBQ_RIBS, 3);
         orders.addOrder(Menu.CHOCOLATE_CAKE, 5);
@@ -36,7 +36,7 @@ public class PromotionServiceTest {
     @Test
     void generatePromotionTest() {
         promotion = promotionService.generatePromotion(visitDate, orders);
-        Promotion expected = Promotion.createPromotion(visitDate, orders);
+        Promotion expected = Promotion.create(visitDate, orders);
         assertEquals(promotion.getMyDiscount().getAllDiscount(), expected.getMyDiscount().getAllDiscount());
         assertEquals(promotion.getMyEventBadge().getBadge(), expected.getMyEventBadge().getBadge());
         assertEquals(promotion.getTotalBenefit(), expected.getTotalBenefit());
@@ -77,7 +77,7 @@ public class PromotionServiceTest {
     @DisplayName("10000원 이하(9000원)의 promotion null 반환 테스트")
     @Test
     void underMinPriceTest() {
-        orders = new Orders();
+        orders = Orders.create();
         orders.addOrder(Menu.MUSHROOM_SOUP, 1);
         orders.addOrder(Menu.ZERO_COLA, 1);
         Promotion promotion = promotionService.generatePromotion(visitDate, orders);

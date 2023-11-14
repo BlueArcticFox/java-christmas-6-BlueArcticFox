@@ -12,19 +12,23 @@ public class MyDiscount {
     private final SpecialDiscount specialDiscount;
     private final WeekDiscount weekDiscount;
 
-    public MyDiscount(VisitDate visitDate, Orders orders) {
+    private MyDiscount(VisitDate visitDate, Orders orders) {
         int date = visitDate.getDate();
         int week = visitDate.getWeek();
-        d_dayDiscount = new D_DayDiscount(date);
-        specialDiscount = new SpecialDiscount(date, week);
+        d_dayDiscount = D_DayDiscount.create(date);
+        specialDiscount = SpecialDiscount.create(date, week);
         weekDiscount = decideWeekDiscount(week, orders);
+    }
+
+    public static MyDiscount create(VisitDate visitDate, Orders orders) {
+        return new MyDiscount(visitDate, orders);
     }
 
     private WeekDiscount decideWeekDiscount(int week, Orders orders) {
         if (week >= FRIDAY.getValue()) {
-            return new WeekendDiscount(orders.getNumberOfSection(MAIN_DISH.getValue()));
+            return WeekendDiscount.create(orders.getNumberOfSection(MAIN_DISH.getValue()));
         }
-        return new WeekdayDiscount(orders.getNumberOfSection(DESSERT.getValue()));
+        return WeekdayDiscount.create(orders.getNumberOfSection(DESSERT.getValue()));
     }
 
     public D_DayDiscount getD_DayDiscount() {

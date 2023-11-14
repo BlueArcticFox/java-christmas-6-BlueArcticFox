@@ -8,10 +8,14 @@ public class PromotionDto {
     private final Map<String, Integer> benefit;
     private final String badge;
 
-    protected PromotionDto(Map<String, Integer> giveaway, Map<String, Integer> benefit, String badge) {
+    private PromotionDto(Map<String, Integer> giveaway, Map<String, Integer> benefit, String badge) {
         this.giveaway = giveaway;
         this.benefit = benefit;
         this.badge = badge;
+    }
+
+    protected static PromotionDto create(Map<String, Integer> giveaway, Map<String, Integer> benefit, String badge) {
+        return new PromotionDto(giveaway, benefit, badge);
     }
 
     public Map<String, Integer> getGiveaway() {
