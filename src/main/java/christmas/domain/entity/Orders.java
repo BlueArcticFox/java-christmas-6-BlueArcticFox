@@ -56,7 +56,7 @@ public class Orders extends OrdersValidator {
         return count;
     }
 
-    public Map<Menu, Integer> getOrders() {
+    public Map<Menu, Integer> getOrderGroup() {
         return orderGroup;
     }
 }

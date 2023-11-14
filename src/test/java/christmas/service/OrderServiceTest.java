@@ -79,7 +79,7 @@ public class OrderServiceTest {
     @DisplayName("OrderDto 변환 테스트")
     @Test
     void OrderDtoTest() {
-        OrdersDto ordersDto = ordersService.generateOrdersDto(VisitDate.create(20), orders.getOrders());
+        OrdersDto ordersDto = ordersService.generateOrdersDto(VisitDate.create(20), orders.getOrderGroup());
         OrdersDto expected = DtoMapper.toOrderDto(20,
                 Map.of(
                         Menu.TAPAS.getName(), 5,

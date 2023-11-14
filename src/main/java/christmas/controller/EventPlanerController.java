@@ -34,7 +34,7 @@ public class EventPlanerController {
         Orders orders = decideOrders();
         Promotion promotion = promotionService.generatePromotion(visitDate, orders);
 
-        OrdersDto ordersDto = ordersService.generateOrdersDto(visitDate, orders.getOrders());
+        OrdersDto ordersDto = ordersService.generateOrdersDto(visitDate, orders.getOrderGroup());
         OrderPriceDto orderPriceDto = promotionService.generateOrderPriceDto(orders, promotion);
         PromotionDto promotionDto = promotionService.generatePromotionDto(promotion);
 
