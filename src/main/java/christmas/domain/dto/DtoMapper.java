@@ -6,7 +6,6 @@ import java.util.Map;
 
 public class DtoMapper {
     private DtoMapper() {
-
     }
 
     public static OrderPriceDto toOrderPriceDto(int totalPriceBeforeDiscount, int totalBenefit, int expectedPriceAfterDiscount) {
