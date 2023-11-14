@@ -1,13 +1,17 @@
 package christmas.controller;
 
+import static christmas.configuration.BooleanConstant.NO;
+
 import christmas.domain.dto.OrderPriceDto;
 import christmas.domain.dto.OrdersDto;
 import christmas.domain.dto.PromotionDto;
 import christmas.domain.entity.Orders;
 import christmas.domain.entity.Promotion;
+import christmas.domain.entity.Schedule;
 import christmas.domain.entity.VisitDate;
 import christmas.service.OrdersService;
 import christmas.service.PromotionService;
+import christmas.service.ScheduleService;
 import christmas.view.InputView;
 import christmas.view.OutputView;
 import java.util.List;
@@ -17,15 +21,18 @@ public class EventPlanerController {
     private final OutputView outputView;
     private final OrdersService ordersService;
     private final PromotionService promotionService;
+    private final ScheduleService scheduleService;
 
     public EventPlanerController(InputView inputView,
                                  OutputView outputView,
                                  OrdersService ordersService,
-                                 PromotionService promotionService) {
+                                 PromotionService promotionService,
+                                 ScheduleService scheduleService) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.ordersService = ordersService;
         this.promotionService = promotionService;
+        this.scheduleService = scheduleService;
     }
 
     public void runEventPlaner() {
@@ -39,6 +46,10 @@ public class EventPlanerController {
         PromotionDto promotionDto = promotionService.generatePromotionDto(promotion);
 
         printResult(ordersDto, orderPriceDto, promotionDto);
+        Schedule schedule = Schedule.create(orders, promotion);
+        Long scheduleId = scheduleService.saveSchedule(schedule);
+
+        rePlan(NO.getValue());
     }
 
     private VisitDate decideVisitDate() {
@@ -68,5 +79,11 @@ public class EventPlanerController {
         outputView.printTotalBenefit(orderPriceDto);
         outputView.printExpectedPriceAfterDiscount(orderPriceDto);
         outputView.printEventBadge(promotionDto);
+    }
+
+    private void rePlan(boolean isContinue) {
+        if (isContinue) {
+            runEventPlaner();
+        }
     }
 }
