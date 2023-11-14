@@ -52,6 +52,18 @@ public class AppConfigTest {
         testSingleton(config.eventPlanerController()) ;
     }
 
+    @DisplayName("scheduleRepository가 싱글톤인지 테스트 ")
+    @Test
+    public void AppConfigTest_7() {
+        testSingleton(config.scheduleRepository()) ;
+    }
+
+    @DisplayName("scheduleService가 싱글톤인지 테스트 ")
+    @Test
+    public void AppConfigTest_8() {
+        testSingleton(config.scheduleService()) ;
+    }
+
     private <T> void testSingleton(T instance) {
         assertThat(instance).isNotNull();
         assertThat(instance).isSameAs(instance);
