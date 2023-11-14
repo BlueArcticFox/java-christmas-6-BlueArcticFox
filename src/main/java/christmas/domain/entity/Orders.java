@@ -27,11 +27,11 @@ public class Orders extends OrdersValidator {
     }
 
     public int getTotalPrice() {
-        int prize = 0;
+        int price = 0;
         for(Menu menu: orderGroup.keySet()) {
-            prize += menu.getTotalPrice(orderGroup.get(menu));
+            price += menu.getTotalPrice(orderGroup.get(menu));
         }
-        return prize;
+        return price;
     }
 
     public int getNumberOfOrders() {
