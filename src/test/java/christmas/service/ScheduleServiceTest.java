@@ -23,7 +23,7 @@ public class ScheduleServiceTest {
 
     @DisplayName("save에 따른 ID 반환 테스트")
     @Test
-    void saveSchedule() {
+    void saveScheduleTest() {
         Schedule schedule = Schedule.create(null, null, null);
         assertEquals(scheduleService.saveSchedule(schedule), 1);
         assertEquals(scheduleService.saveSchedule(schedule), 2);
@@ -31,7 +31,7 @@ public class ScheduleServiceTest {
 
     @DisplayName("findScheduleById 테스트")
     @Test
-    void findByIdSchedule() {
+    void findByIdScheduleTest() {
         Schedule schedule1 = Schedule.create(null, null, null);
         Schedule schedule2 = Schedule.create(null, null, null);
         Long id1 = scheduleService.saveSchedule(schedule1);
@@ -44,7 +44,7 @@ public class ScheduleServiceTest {
 
     @DisplayName("findScheduleAll 테스트")
     @Test
-    void findAllSchedule() {
+    void findAllScheduleTest() {
         Schedule schedule1 = Schedule.create(null, null, null);
         Schedule schedule2 = Schedule.create(null, null, null);
         List<Schedule> actually = List.of(schedule1, schedule2);
@@ -52,5 +52,14 @@ public class ScheduleServiceTest {
         Long id2 = scheduleService.saveSchedule(schedule2);
         List expected = scheduleService.findScheduleAll();
         assertEquals(actually, expected);
+    }
+
+    @DisplayName("deleteSchedule 테스트")
+    @Test
+    void deleteScheduleTest() {
+        Schedule schedule1 = Schedule.create(null, null, null);
+        Schedule schedule2 = Schedule.create(null, null, null);
+        scheduleService.deleteScheduleAll();
+        assertEquals(scheduleService.findScheduleAll(), List.of());
     }
 }
