@@ -26,7 +26,7 @@ public class PromotionTest {
                 "티본스테이크-2",
                 "아이스크림-4"
         ));
-        promotion = new Promotion(visitDate, orders);
+        promotion = Promotion.createPromotion(visitDate, orders);
     }
 
     @DisplayName("전체 혜택 금액 테스트")

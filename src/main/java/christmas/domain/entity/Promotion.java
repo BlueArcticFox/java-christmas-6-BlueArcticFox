@@ -1,5 +1,7 @@
 package christmas.domain.entity;
 
+import static christmas.configuration.IntegerConstant.MIN_PRICE;
+
 import christmas.domain.entity.discount.MyDiscount;
 import java.util.Map;
 
@@ -9,11 +11,18 @@ public class Promotion {
     private final MyEventBadge myEventBadge;
     private final int totalBenefit;
 
-    public Promotion(VisitDate visitDate, Orders orders) {
+    private Promotion(VisitDate visitDate, Orders orders) {
         myDiscount = new MyDiscount(visitDate, orders);
         myGiveaway = new MyGiveaway(orders.getTotalPrice());
         totalBenefit = calcTotalBenefit();
         myEventBadge = new MyEventBadge(totalBenefit);
+    }
+
+    public static Promotion createPromotion(VisitDate visitDate, Orders orders) {
+        if(orders.getTotalPrice() < MIN_PRICE.getValue()) {
+            return null;
+        }
+        return new Promotion(visitDate, orders);
     }
 
     private int calcTotalBenefit() {

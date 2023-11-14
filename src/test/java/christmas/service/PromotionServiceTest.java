@@ -36,7 +36,7 @@ public class PromotionServiceTest {
     @Test
     void generatePromotionTest() {
         promotion = promotionService.generatePromotion(visitDate, orders);
-        Promotion expected = new Promotion(visitDate, orders);
+        Promotion expected = Promotion.createPromotion(visitDate, orders);
         assertEquals(promotion.getMyDiscount().getAllDiscount(), expected.getMyDiscount().getAllDiscount());
         assertEquals(promotion.getMyEventBadge().getBadge(), expected.getMyEventBadge().getBadge());
         assertEquals(promotion.getTotalBenefit(), expected.getTotalBenefit());

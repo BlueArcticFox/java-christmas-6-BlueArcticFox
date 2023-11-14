@@ -19,10 +19,7 @@ import java.util.Map;
 public class PromotionServiceImpl implements PromotionService {
     @Override
     public Promotion generatePromotion(VisitDate visitDate, Orders orders) {
-        if(orders.getTotalPrice() >= MIN_PRICE.getValue()) {
-            return new Promotion(visitDate, orders);
-        }
-        return null;
+        return Promotion.createPromotion(visitDate, orders);
     }
 
     @Override
