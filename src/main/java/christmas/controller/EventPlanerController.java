@@ -17,10 +17,20 @@ import christmas.view.OutputView;
 import java.util.List;
 
 public class EventPlanerController {
-    private final InputView inputView = new ConsoleInputView();
-    private final OutputView outputView = new ConsoleOutputView();
-    private final OrdersService ordersService = new OrdersServiceImpl();
-    private final PromotionService promotionService = new PromotionServiceImpl();
+    private final InputView inputView;
+    private final OutputView outputView;
+    private final OrdersService ordersService;
+    private final PromotionService promotionService;
+
+    public EventPlanerController(InputView inputView,
+                                 OutputView outputView,
+                                 OrdersService ordersService,
+                                 PromotionService promotionService) {
+        this.inputView = inputView;
+        this.outputView = outputView;
+        this.ordersService = ordersService;
+        this.promotionService = promotionService;
+    }
 
     public void runEventPlaner() {
         outputView.printWelcome();
