@@ -1,7 +1,21 @@
 package christmas;
 
+import christmas.configuration.AppConfig;
+import christmas.configuration.Config;
+import christmas.controller.EventPlanerController;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        Config config = generateConfig();
+        EventPlanerController eventPlanerController = generateEventPlanerController(config);
+        eventPlanerController.runEventPlaner();
+    }
+
+    private static Config generateConfig() {
+        return AppConfig.getInstance();
+    }
+
+    private static EventPlanerController generateEventPlanerController(Config config) {
+        return config.eventPlanerController();
     }
 }
